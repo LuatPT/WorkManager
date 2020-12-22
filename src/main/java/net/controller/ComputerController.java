@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import net.entities.Computer;
 import net.service.ComputerService;
@@ -16,7 +15,7 @@ public class ComputerController {
 	@Autowired 
 	private ComputerService computerService;
 	
-	@RequestMapping(value = {"/", "computer-list"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "computer-list"})
 	public String listComputer(Model model) {
 		 model.addAttribute("listComputerAll", computerService.findAll());
 		 return "computerList";

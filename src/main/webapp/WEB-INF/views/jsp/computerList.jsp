@@ -1,12 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>List</title>
+<title>Helo Spring MVC + JDBC</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+td {
+  padding-right: 30px;
+}
+</style>
 </head>
 <body>
-	<p>List</p>
+  <c:url value="/computer-save" var="urlSave"/>
+  <c:url value="/computer-view/" var="urlView"/>
+  <c:url value="/computer-update/" var="urlUpdate"/>
+  <c:url value="/computerDelete/" var="urlDelete"/>
+  <h1>List computer:</h1>
+  <a href="${urlSave}">Add computer</a>
+  <br />
+  <br />
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>ON/OFF</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <%-- <c:if test="${not empty listComputerAll}"> --%>
+      <c:forEach var="computer" items="${listComputerAll}">
+        <tr style="border: 1px black solid">
+          <td>${computer.computer_id}</td>
+          <td>${computer.computer_status}</td>
+          <td> <a href="${urlView}/${computer.computer_id}">View</a></td>
+          <td> <a href="${urlUpdate}/${computer.computer_id}">Edit</a></td>
+          <td> <a href="${urlDelete}/${computer.computer_id}">Delete</a></td>
+        </tr>
+      </c:forEach>
+    <%-- </c:if> --%>
+  </table>
 </body>
 </html>

@@ -51,6 +51,6 @@
   </dependencies>
 
   <build>
-    <finalName>NetManager</finalName>
+    <finalName>Net_Manager</finalName>
   </build>
 </project>
