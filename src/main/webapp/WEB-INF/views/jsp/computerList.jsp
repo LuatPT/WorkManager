@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Helo Spring MVC + JDBC</title>
+<%-- <%@ page isELIgnored="false" %> --%>
 <style>
 table, th, td {
   border: 1px solid black;
@@ -30,8 +32,8 @@ td {
       <th>Edit</th>
       <th>Delete</th>
     </tr>
-    <%-- <c:if test="${not empty listComputerAll}"> --%>
-      <c:forEach var="computer" items="${listComputerAll}">
+   <%--  <c:if test="${not empty listComputer}"> --%>
+      <c:forEach var="computer" items="${listComputer}">
         <tr style="border: 1px black solid">
           <td>${computer.computer_id}</td>
           <td>${computer.computer_status}</td>
@@ -40,7 +42,7 @@ td {
           <td> <a href="${urlDelete}/${computer.computer_id}">Delete</a></td>
         </tr>
       </c:forEach>
-    <%-- </c:if> --%>
+   <%--  </c:if>  --%>
   </table>
 </body>
 </html>

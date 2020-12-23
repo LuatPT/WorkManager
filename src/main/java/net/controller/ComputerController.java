@@ -17,7 +17,7 @@ public class ComputerController {
 	
 	@RequestMapping(value = {"/", "computer-list"})
 	public String listComputer(Model model) {
-		 model.addAttribute("listComputerAll", computerService.findAll());
+		 model.addAttribute("listComputer", computerService.findAll());
 		 return "computerList";
 	}
 	@RequestMapping("/computer-save")
