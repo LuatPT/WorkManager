@@ -18,7 +18,7 @@ public class ComputerService {
 	public List<Computer> findAll (){
 		return computerDao.findAll();
 	}
-	public Computer findById (int computer_id) {
+	public Computer findById (String computer_id) {
 		return computerDao.findById(computer_id);
 	}
 	
@@ -30,7 +30,7 @@ public class ComputerService {
 		computerDao.update(computer);
 	}
 	
-	public void delete(int computer_id){
+	public void delete(String computer_id){
 		computerDao.delete(computer_id);
 	}
 }

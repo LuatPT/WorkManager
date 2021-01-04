@@ -28,6 +28,7 @@ td {
     <tr>
       <th>Id</th>
       <th>ON/OFF</th>
+      <th>Bill ID</th>
       <th>View</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -37,6 +38,7 @@ td {
         <tr style="border: 1px black solid">
           <td>${computer.computer_id}</td>
           <td>${computer.computer_status}</td>
+          <td>${computer.bill_id}</td>
           <td> <a href="${urlView}/${computer.computer_id}">View</a></td>
           <td> <a href="${urlUpdate}/${computer.computer_id}">Edit</a></td>
           <td> <a href="${urlDelete}/${computer.computer_id}">Delete</a></td>

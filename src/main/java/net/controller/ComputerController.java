@@ -26,13 +26,13 @@ public class ComputerController {
 		return "computerAdd";
 	}
 	@RequestMapping("/computer-view/{computer_id}")
-	public String viewComputer(@PathVariable int computer_id, Model model) {
+	public String viewComputer(@PathVariable String computer_id, Model model) {
 		Computer computer = computerService.findById(computer_id);
 		model.addAttribute("computer", computer);
 		return "computerView";
 	}
 	 @RequestMapping("/computer-update/{computer_id}")
-	  public String updatecomputer(@PathVariable int computer_id, Model model) {
+	  public String updatecomputer(@PathVariable String computer_id, Model model) {
 		 Computer computer = computerService.findById(computer_id);
 	    model.addAttribute("computer", computer);
 	    return "computerUpdate";
@@ -51,7 +51,7 @@ public class ComputerController {
 	  }
 	  
 	  @RequestMapping("/computerDelete/{computer_id}")
-	  public String doDeletecomputer(@PathVariable int computer_id, Model model) {
+	  public String doDeletecomputer(@PathVariable String computer_id, Model model) {
 	    computerService.delete(computer_id);
 	    model.addAttribute("listComputer", computerService.findAll());
 	    return "computerList";

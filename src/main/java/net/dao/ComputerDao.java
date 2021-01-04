@@ -23,7 +23,7 @@ public class ComputerDao {
 		jdbcTemplate.update(sql, computer.getComputer_id(), computer.getComputer_status());
 	}
 	
-	public void delete(int computer_id) {
+	public void delete(String computer_id) {
 		String sql = "DELETE FROM computers WHERE computer_id = ?";
 		jdbcTemplate.update(sql, computer_id);
 	}
@@ -33,7 +33,7 @@ public class ComputerDao {
 		jdbcTemplate.update(sql, computer.getComputer_status(), computer.getComputer_id());
 	}
 	
-	public Computer findById(int computer_id) {
+	public Computer findById(String computer_id) {
 		String sql = "SELECT * FROM computers WHERE computer_id = ?";
 		return jdbcTemplate.queryForObject(sql, new ComputerMapper(), computer_id);
 	}
