@@ -14,7 +14,9 @@ import net.entities.Work;
 public class WorkService {
 	@Autowired
 	private WorkDao workDao;
-	
+	public List<Work> findListByUser (String user_id){
+		return workDao.findListByUser(user_id);
+	}
 	public List<Work> findAll (){
 		return workDao.findAll();
 	}

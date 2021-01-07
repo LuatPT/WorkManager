@@ -20,6 +20,11 @@ public class WorkController {
 		 model.addAttribute("listWork", workService.findAll());
 		 return "workList";
 	}
+	@RequestMapping(value = {"/work-list/{user_id}"})
+	public String listWorkByUser(@PathVariable String user_id, Model model) {
+		 model.addAttribute("listWork", workService.findListByUser(user_id));
+		 return "workList";
+	}
 	@RequestMapping("/work-save")
 	public String insertWork(Model model){
 		model.addAttribute("work", new Work());

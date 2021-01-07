@@ -8,29 +8,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.entities.User;
 import net.service.UserService;
-import net.service.WorkService;
 
 @Controller
 public class LoginController {
+	final String userIdString = "U000";
 
 	@Autowired
 	private UserService userService;
 
+	@RequestMapping("/showRegister")
+	public String showRegister(@ModelAttribute("user") User user, Model model) {
+		return "login";
+	}
+	
 	@RequestMapping("/register")
 	public String register(@ModelAttribute("user") User user, Model model) {
-		userService.save(user);
-		return "workList";
+		boolean check = userService.findById(user.getUser_name());
+		String maxId = userIdString + (userService.checkMaxId()+1);
+		if (check == false) {
+			model.addAttribute("statusRegister", "OK");
+			userService.save(user, maxId);
+		}else {
+			model.addAttribute("statusRegister", "404");
+		}
+		return "login";
 	}
 
 	@RequestMapping("/login")
 	public String login(@ModelAttribute("user") User user, Model model) {
 		User userForCheck = userService.checkUser(user);
 		if (userForCheck != null) {
-			model.addAttribute("status", "OK");
+			model.addAttribute("statusLogin", "OK");
 		}else {
-			model.addAttribute("status", "404");
+			model.addAttribute("statusLogin", "404");
 		}
-		return "login";
+		return  "redirect:/work-list/" + userForCheck.getUser_id();
 	}
 
 	@RequestMapping("/showLogin")

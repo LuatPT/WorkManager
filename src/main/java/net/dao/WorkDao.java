@@ -29,8 +29,8 @@ public class WorkDao {
 	}
 	
 	public void update(Work work) {
-		String sql = "UPDATE works SET work_status = ? WHERE work_id = ?";
-		jdbcTemplate.update(sql, work.getWork_status(), work.getWork_id());
+		String sql = "UPDATE works SET work_name = ?, work_start = ?, work_end = ?, work_percent = ?, work_status = ? WHERE work_id = ?";
+		jdbcTemplate.update(sql, work.getWork_name(), work.getWork_start(), work.getWork_end(), work.getWork_percent(),work.getWork_status(), work.getWork_id());
 	}
 	
 	public Work findById(String work_id) {
@@ -41,5 +41,9 @@ public class WorkDao {
 	public List<Work> findAll() {
 		String sql = "SELECT * FROM works";
 		return jdbcTemplate.query(sql, new WorkMapper());
+	}
+	public List<Work> findListByUser(String user_id) {
+		String sql = "SELECT * FROM works WHERE user_id = ?";
+		return jdbcTemplate.query(sql, new WorkMapper(), user_id);
 	}
 }

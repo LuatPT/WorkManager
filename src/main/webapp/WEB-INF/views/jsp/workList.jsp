@@ -26,13 +26,10 @@ td {
   <br />
   <table>
     <tr>
-      <th>Work ID</th>
       <th>Work Name</th>
       <th>Work Start</th>
       <th>Work End</th>
-      <th>Work Percent</th>
       <th>Work Status</th>
-      <th>User ID</th>
       <th>View</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -40,13 +37,10 @@ td {
    <%--  <c:if test="${not empty listWork}"> --%>
       <c:forEach var="work" items="${listWork}">
         <tr style="border: 1px black solid">
-          <td>${work.work_id}</td>
           <td>${work.work_name}</td>
           <td>${work.work_start}</td>
           <td>${work.work_end}</td>
-          <td>${work.work_percent}</td>
           <td>${work.work_status}</td>
-          <td>${work.user_id}</td>
           <td> <a href="${urlView}/${work.work_id}">View</a></td>
           <td> <a href="${urlUpdate}/${work.work_id}">Edit</a></td>
           <td> <a href="${urlDelete}/${work.work_id}">Delete</a></td>

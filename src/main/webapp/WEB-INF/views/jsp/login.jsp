@@ -12,12 +12,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
 </head>
 <body>
-	<div>
-	  <div class="wrapper">
+	<div class="row">
+		<div class="wrapper col-md-6">
+	  	<c:url value="/register" var="register"/>
+	  	<form:form action="${register}" method="POST" modelAttribute="user" class="form-signin">       
+	      <h2 class="form-signin-heading">Please register</h2>
+	      <p>${statusRegister}</p>
+	      <form:input type="text" class="form-control" path="user_name" placeholder="User name..." required="" autofocus="" ></form:input>
+	      <form:input type="password" class="form-control" path="password" placeholder="Password..." required=""></form:input>
+	      <form:button class="btn btn-lg btn-primary btn-block" type="submit">Register</form:button>   
+	    </form:form>
+	  </div>
+	  <div class="wrapper col-md-6">
 	  	<c:url value="/login" var="login"/>
 	  	<form:form action="${login}" method="POST" modelAttribute="user" class="form-signin">       
 	      <h2 class="form-signin-heading">Please login</h2>
-	      <p>${status}</p>
+	      <p>${statusLogin}</p>
 	      <form:input type="text" class="form-control" path="user_name" placeholder="User name..." required="" autofocus="" ></form:input>
 	      <form:input type="password" class="form-control" path="password" placeholder="Password..." required=""></form:input>
 	      <form:button class="btn btn-lg btn-primary btn-block" type="submit">Login</form:button>   
