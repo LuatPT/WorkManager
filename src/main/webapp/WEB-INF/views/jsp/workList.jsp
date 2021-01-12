@@ -6,6 +6,9 @@
 <head>
 <title>Work List</title>
 <%-- <%@ page isELIgnored="false" %> --%>
+	<link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
+    <script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
+    <script src="<c:url value="/resources/js/workList.js" />"></script>
 <style>
 table, th, td {
   border: 1px solid black;
@@ -24,7 +27,7 @@ td {
   <a href="${urlSave}">Add work</a>
   <br />
   <br />
-  <table>
+  <table id=orderTable>
     <tr>
       <th>Work Name</th>
       <th>Work Start</th>
@@ -39,7 +42,7 @@ td {
         <tr style="border: 1px black solid">
           <td>${work.work_name}</td>
           <td>${work.work_start}</td>
-          <td>${work.work_end}</td>
+          <td id="${work.work_id}">${work.work_end}</td>
           <td>${work.work_status}</td>
           <td> <a href="${urlView}/${work.work_id}">View</a></td>
           <td> <a href="${urlUpdate}/${work.work_id}">Edit</a></td>
