@@ -6,9 +6,7 @@
 <head>
 <title>Work List</title>
 <%-- <%@ page isELIgnored="false" %> --%>
-	<link href="<c:url value="/resources/css/login.css" />" rel="stylesheet">
-    <script src="<c:url value="/resources/js/jquery.1.10.2.min.js" />"></script>
-    <script src="<c:url value="/resources/js/workList.js" />"></script>
+ 
 <style>
 table, th, td {
   border: 1px solid black;
@@ -27,7 +25,7 @@ td {
   <a href="${urlSave}">Add work</a>
   <br />
   <br />
-  <table id=orderTable>
+  <table id="orderTable">
     <tr>
       <th>Work Name</th>
       <th>Work Start</th>
@@ -51,5 +49,7 @@ td {
       </c:forEach>
    <%--  </c:if>  --%>
   </table>
+  
+<script src="<c:url value="/resources/js/workList.js" />"></script>
 </body>
 </html>
