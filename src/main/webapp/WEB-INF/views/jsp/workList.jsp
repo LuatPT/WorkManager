@@ -17,10 +17,10 @@ td {
 </style>
 </head>
 <body>
-  <c:url value="/work-save" var="urlSave"/>
-  <c:url value="/work-view/" var="urlView"/>
-  <c:url value="/work-update/" var="urlUpdate"/>
-  <c:url value="/workDelete/" var="urlDelete"/>
+  <c:url value="/showAddWork" var="urlSave"/>
+  <c:url value="/viewWork" var="urlView"/>
+  <c:url value="/showUpdateWork" var="urlUpdate"/>
+  <c:url value="/doDeleteWork" var="urlDelete"/>
   <h1>List work:</h1>
   <a href="${urlSave}">Add work</a>
   <br />
@@ -31,6 +31,7 @@ td {
       <th>Work Start</th>
       <th>Work End</th>
       <th>Work Status</th>
+      <th>Count down</th>
       <th>View</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -42,6 +43,7 @@ td {
           <td>${work.work_start}</td>
           <td id="${work.work_id}">${work.work_end}</td>
           <td>${work.work_status}</td>
+          <td></td>
           <td> <a href="${urlView}/${work.work_id}">View</a></td>
           <td> <a href="${urlUpdate}/${work.work_id}">Edit</a></td>
           <td> <a href="${urlDelete}/${work.work_id}">Delete</a></td>

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import net.entities.Work;
 import net.service.WorkService;
@@ -15,47 +16,53 @@ public class WorkController {
 	@Autowired 
 	private WorkService workService;
 	
-	@RequestMapping(value = {"/", "work-list"})
-	public String listWork(Model model) {
+	@RequestMapping(value = {"/", "showListWork"})
+	public String showListWork(Model model) {
 		 model.addAttribute("listWork", workService.findAll());
 		 return "workList";
 	}
-	@RequestMapping(value = {"/work-list/{user_id}"})
-	public String listWorkByUser(@PathVariable String user_id, Model model) {
+	@RequestMapping(value = {"/showListWork/{user_id}"})
+	public String showListWorkByUser(@PathVariable String user_id, Model model) {
 		 model.addAttribute("listWork", workService.findListByUser(user_id));
 		 return "workList";
 	}
-	@RequestMapping("/work-save")
-	public String insertWork(Model model){
+	@RequestMapping("/showAddWork")
+	public String showAddWork(Model model){
 		model.addAttribute("work", new Work());
 		return "workAdd";
 	}
-	@RequestMapping("/work-view/{work_id}")
+	@RequestMapping("/viewWork/{work_id}")
 	public String viewWork(@PathVariable String work_id, Model model) {
 		Work work = workService.findById(work_id);
 		model.addAttribute("work", work);
 		return "workView";
 	}
-	 @RequestMapping("/work-update/{work_id}")
-	  public String updatework(@PathVariable String work_id, Model model) {
+	 @RequestMapping("/showUpdateWork/{work_id}")
+	  public String showUpdateWork(@PathVariable String work_id, Model model) {
 		 Work work = workService.findById(work_id);
 	    model.addAttribute("work", work);
 	    return "workUpdate";
 	  }
-	  @RequestMapping("/saveWork")
+	  @RequestMapping("/doSaveWork")
 	  public String doSavework(@ModelAttribute("work") Work work, Model model) {
 	    workService.save(work);
 	    model.addAttribute("listWork", workService.findAll());
 	    return "workList";
 	  }
-	  @RequestMapping("/updateWork")
+	  @RequestMapping("/doUpdateWork")
 	  public String doUpdatework(@ModelAttribute("work") Work work, Model model) {
 	    workService.update(work);
 	    model.addAttribute("listWork", workService.findAll());
 	    return "workList";
 	  }
 	  
-	  @RequestMapping("/workDelete/{work_id}")
+	  @RequestMapping("/updateStatus")
+	  public String updateStatus(@RequestParam("work_status") String workStatus, @RequestParam("work_status") String workId) {
+	    workService.updateStatus(workStatus, workId);
+	    return "";
+	  }
+	  
+	  @RequestMapping("/doDeleteWork/{work_id}")
 	  public String doDeletework(@PathVariable String work_id, Model model) {
 	    workService.delete(work_id);
 	    model.addAttribute("listWork", workService.findAll());

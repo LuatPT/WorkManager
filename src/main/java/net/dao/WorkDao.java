@@ -19,8 +19,8 @@ public class WorkDao {
 	private JdbcTemplate jdbcTemplate;
 	
 	public void save(Work work) {
-		String sql = "INSERT INTO works (work_id, work_status) VALUES (?, ?)";
-		jdbcTemplate.update(sql, work.getWork_id(), work.getWork_status());
+		String sql = "INSERT INTO works (work_id, work_name, work_start, work_end, work_percent, work_status) VALUES (?, ?, ?, ?, ?, ?)";
+		jdbcTemplate.update(sql, work.getWork_id(), work.getWork_name(), work.getWork_start(), work.getWork_end(), work.getWork_percent(),work.getWork_status());
 	}
 	
 	public void delete(String work_id) {
@@ -31,6 +31,11 @@ public class WorkDao {
 	public void update(Work work) {
 		String sql = "UPDATE works SET work_name = ?, work_start = ?, work_end = ?, work_percent = ?, work_status = ? WHERE work_id = ?";
 		jdbcTemplate.update(sql, work.getWork_name(), work.getWork_start(), work.getWork_end(), work.getWork_percent(),work.getWork_status(), work.getWork_id());
+	}
+	
+	public void updateStatus(String workStatus, String workId) {
+		String sql = "UPDATE works SET work_status = ? WHERE work_id = ?";
+		jdbcTemplate.update(sql, workStatus, workId);
 	}
 	
 	public Work findById(String work_id) {

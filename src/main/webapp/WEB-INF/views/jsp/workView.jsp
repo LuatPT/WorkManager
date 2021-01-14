@@ -4,7 +4,7 @@
 <title>View Work</title>
 </head>
 <body>
-  <a href="<c:url value="/work-list" />" >List Work</a><br />
+  <a href="<c:url value="/showListWork" />" >List Work</a><br />
   
 	<p>${work.work_id}</p>
 	<p>${work.work_name}</p>

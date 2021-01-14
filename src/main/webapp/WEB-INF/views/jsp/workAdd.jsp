@@ -5,15 +5,14 @@
 <title>Add new Work</title>
 </head>
 <body>
-  <a href="<c:url value="/work-list" />" >List Work</a><br />
+  <a href="<c:url value="/showListWork" />" >List Work</a><br />
   <h1>Add new Work:</h1>
-  <c:url value="/saveWork" var="saveWork"/>
-  <form:form action="${saveWork}" method="POST"
-    modelAttribute="work">
+  <c:url value="/doSaveWork" var="doSaveWork"/>
+  <form:form action="${doSaveWork}" method="POST" modelAttribute="work">
       Work ID: <form:input path="work_id" /> <br/> 
       Work Name: <form:input path="work_name" /> <br/> 
-      Work Start: <form:input path="work_start" class="date"/> <br/> 
-      Work End: <form:input path="work_end" class="date"/> <br/> 
+      Work Start: <form:input path="work_start" class="date" type="date"/> <br/> 
+      Work End: <form:input path="work_end" class="date" type="date"/> <br/> 
       Work Percent: <form:input path="work_percent" /> <br/> 
       Work Status: <br/>
       In progress<form:radiobutton path="work_status" value="In Progress"/>  

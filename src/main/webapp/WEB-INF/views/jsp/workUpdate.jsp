@@ -5,15 +5,15 @@
 <title>Update Work</title>
 </head>
 <body>
-  <a href="<c:url value="/work-list" />">List Work</a>
+  <a href="<c:url value="/showListWork" />">List Work</a>
   <br />
   <h1>Edit Work:</h1>
-  <c:url value="/updateWork" var="updateWork" />
-  <form:form action="${updateWork}" method="POST" modelAttribute="work">
+  <c:url value="/doUpdateWork" var="doUpdateWork" />
+  <form:form action="${doUpdateWork}" method="POST" modelAttribute="work">
       Work ID: <form:input path="work_id" /> <br/> <br/>
       Work Name: <form:input path="work_name" /> <br/> 
-      Work Start: <form:input path="work_start" /> <br/> 
-      Work End: <form:input path="work_end" /> <br/> 
+      Work Start: <form:input path="work_start" class="date" type="date" /> <br/> 
+      Work End: <form:input path="work_end" class="date" type="date"/> <br/> 
       Work Percent: <form:input path="work_percent" /> <br/> 
       Work Status: <br/>
       In progress<form:radiobutton path="work_status" value="In Progress"/>  

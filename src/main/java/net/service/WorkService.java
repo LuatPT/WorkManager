@@ -32,6 +32,10 @@ public class WorkService {
 		workDao.update(work);
 	}
 	
+	public void updateStatus(String workStatus, String workId) {
+		workDao.updateStatus(workStatus,workId);
+	}
+	
 	public void delete(String work_id){
 		workDao.delete(work_id);
 	}
