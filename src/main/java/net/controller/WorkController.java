@@ -57,8 +57,8 @@ public class WorkController {
 	  }
 	  
 	  @RequestMapping("/updateStatus")
-	  public String updateStatus(@RequestParam("work_status") String workStatus, @RequestParam("work_status") String workId) {
-	    workService.updateStatus(workStatus, workId);
+	  public String updateStatus ( @RequestParam("work_id") String work_id) {
+	    workService.updateStatus("Done", work_id);
 	    return "";
 	  }
 	  
