@@ -12,8 +12,8 @@
   <form:form action="${doUpdateWork}" method="POST" modelAttribute="work">
       Work ID: <form:input path="work_id" /> <br/> <br/>
       Work Name: <form:input path="work_name" /> <br/> 
-      Work Start: <form:input path="work_start" class="date" type="date" /> <br/> 
-      Work End: <form:input path="work_end" class="date" type="date"/> <br/> 
+      Work Start: <form:input path="work_start"  /> <br/> 
+      Work End: <form:input path="work_end" /> <br/> 
       Work Percent: <form:input path="work_percent" /> <br/> 
       Work Status: <br/>
       In progress<form:radiobutton path="work_status" value="In Progress"/>  

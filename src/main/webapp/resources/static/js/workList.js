@@ -48,9 +48,12 @@ var x = setInterval(function() {
 				
 				axios.post(
 						  '/Net_Manager/updateStatus?work_id='+workID
-				);
-				alert("Finish at task: " + workName);
-				
+				).then(response => { 
+					alert("Finist task " +workName+"at: " +new Date());
+				})
+				.catch(error => {
+				    console.log(error);
+				});
 				
 			}
 		}
