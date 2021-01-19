@@ -3,7 +3,13 @@ package net.controller;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -26,20 +32,52 @@ public class ExportController {
 	private WorkService workService;
 
 	@RequestMapping(value = { "/export" })
-	public String exportListWork(Model model) {
+	public String exportListWork(HttpServletResponse response, Model model) {
+		
 		List<Work> list = workService.findAll();
-
+		
+		//Create file
 		XSSFWorkbook workbook = new XSSFWorkbook();
 
-		XSSFSheet sheet = workbook.createSheet("ListWork");
-
+		
+		//Set header
+		response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=WorkList_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+		
+        XSSFSheet sheet = workbook.createSheet("ListWork");
 		int rowNum = 0;
 		Row firstRow = sheet.createRow(rowNum++);
 		Cell firstCell = firstRow.createCell(0);
 		firstCell.setCellValue("List of Work");
+		
+		Row secondRow = sheet.createRow(rowNum++);
+		//Set header
+		Cell secondCell1 = secondRow.createCell(0);
+		secondCell1.setCellValue("Work ID");
+		
+		Cell secondCell2 = secondRow.createCell(1);
+		secondCell2.setCellValue("Work Name");
+		
+		Cell secondCell3 = secondRow.createCell(2);
+		secondCell3.setCellValue("Work Start");
+		
+		Cell secondCell4 = secondRow.createCell(3);
+		secondCell4.setCellValue("Work End");
+		
+		Cell secondCel5 = secondRow.createCell(4);
+		secondCel5.setCellValue("Work Percent");
+		
+		Cell secondCel6 = secondRow.createCell(5);
+		secondCel6.setCellValue("Work Status");
+		
 		for (Work work : list) {
+			
 			CellStyle style = workbook.createCellStyle();
-//	        style.setFillBackgroundColor(IndexedColors.YELLOW.getIndex());
 	        style.setFillForegroundColor(IndexedColors.YELLOW.getIndex());
 	        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 	        
@@ -56,7 +94,7 @@ public class ExportController {
 			Cell cell5 = row.createCell(4);
 			cell5.setCellValue(work.getWork_percent());
 			Cell cell6 = row.createCell(5);
-			cell6.setCellValue(work.getWork_percent());
+			cell6.setCellValue(work.getWork_status());
 			
 			if (work.getWork_status().compareToIgnoreCase("Done") == 0) {
 				cell1.setCellStyle(style);
@@ -68,14 +106,13 @@ public class ExportController {
 			}
 		}
 		try {
-			FileOutputStream outputStream = new FileOutputStream(
-					"D:/eclipse_workspace/Net_Manager/src/main/webapp/resources/static/files/ListWork.xlsx");
+			ServletOutputStream outputStream = response.getOutputStream();
 			workbook.write(outputStream);
 			workbook.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 		System.out.println("Done");
 		
@@ -83,4 +120,6 @@ public class ExportController {
 
 		return "workList";
 	}
+	
+	
 }

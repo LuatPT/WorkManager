@@ -22,8 +22,10 @@ td {
 	<c:url value="/viewWork" var="urlView" />
 	<c:url value="/showUpdateWork" var="urlUpdate" />
 	<c:url value="/doDeleteWork" var="urlDelete" />
+	<c:url value="/export" var="export" />
 	<h1>List work:</h1>
 	<a href="${urlSave}">Add work</a>
+	<a href="${export}">Export to excel</a>
 	<br />
 	<br />
 	<table id="orderTable">
